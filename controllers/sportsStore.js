@@ -1,3 +1,4 @@
+///<refrence path='../angular.js'/>
 angular.module("sportsStore")
     .controller("sportsStoreCtrl", function ($scope) {
         $scope.data = {
