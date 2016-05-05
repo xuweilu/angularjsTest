@@ -28,7 +28,7 @@
         };
         var todoApp = angular.module("todoApp", []);
 
-        todoApp.filter("checkedItem", function () {
+        todoApp.filter("checkedItems", function () {
             return function (items, showComplete) {
                 var resultArr = [];
                 angular.forEach(items, function (item) {
@@ -97,11 +97,9 @@
                 </tr>
             </tbody>
         </table>
-
         <div class="checkbox-inline">
             <label><input type="checkbox" ng_model="showComplete">Show Complete</label>
         </div>
     </div>
 </body>
-
 </html>
