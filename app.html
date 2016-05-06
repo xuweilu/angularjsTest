@@ -8,16 +8,18 @@
     <link rel="stylesheet" href="bootstrap.css" />
     <link rel="stylesheet" href="bootstrap-theme.css" />
     <script>
-        angular.module("sportsStore", ["customFilters"]);
+        angular.module("sportsStore", ["customFilters", "cart"]);
     </script>
     <script src="controllers/sportsStore.js"></script>
     <script src="filters/customFilters.js"></script>
     <script src="controllers/productListControllers.js"></script>
+    <script src="components/cart/cart.js"></script>
 </head>
 
 <body ng-controller="sportsStoreCtrl">
     <div class="navbar navbar-inverse">
         <a href="#" class="navbar-brand">SPORTS STORE</a>
+        <cart-summary/>
     </div>
     <div class="alert alert-danger" ng-show="data.error">
         Error({{data.error.status}}). The product data was not loaded.
