@@ -10,10 +10,24 @@
         angular.module("exampleApp", [])
             .controller("defaultCtrl", function ($scope) {
                 $scope.addUser = function (userDetails) {
-                    $scope.message = userDetails.name + " (" + userDetails.email + ") (" + userDetails.agreed + ")";
+                    if (myForm.$valid) {
+                        $scope.message = userDetails.name + "(" + userDetails.email + ")(" + userDetails.agreed + ")";
+                    } else {
+                        $scope.showValidation = true;
+                    }
                 }
 
                 $scope.message = "Ready";
+
+                $scope.getError = function (error) {
+                    if (angular.isDefined(error)) {
+                        if (error.required) {
+                            return "Please enter a value";
+                        } else if (error.email) {
+                            return "Please enter a valid email address";
+                        }
+                    }
+                }
             });
     </script>
     <style>
@@ -53,12 +67,7 @@
                     <label>Email:</label>
                     <input name="userEmail" type="email" class="form-control" required ng-model="newUser.email">
                     <div class="error" ng-show="myForm.userEmail.$invalid && myForm.userEmail.$dirty">
-                        <span ng-show="myForm.userEmail.$error.email">
-                                Please enter a valid email address
-                            </span>
-                        <span ng-show="myForm.userEmail.$error.required">
-                                Please enter a value
-                            </span>
+                        {{getError(myForm.userEmail.$error)}}
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block" ng-disabled="myForm.$invalid">OK</button>
